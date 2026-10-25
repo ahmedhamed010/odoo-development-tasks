@@ -1,2 +1,3 @@
 id,name,model_id,group_id/id,operation,domain
 access_shift_onboarding_project_user,shift.onboarding.project user,shift.onboarding.project,base.group_user,cru,
+access_shift_onboarding_task_user,shift.onboarding.task user,shift.onboarding.task,base.group_user,crud,
