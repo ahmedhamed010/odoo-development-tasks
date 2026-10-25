@@ -1,0 +1,13 @@
+{
+    'name': "shift_onboarding",
+    'author': "Ahmed",
+    'category': 'Uncategorized',
+    'version': '0.1',
+    'license': 'LGPL-3',
+    'depends': ['base', 'mail'],
+    'data': [
+        'security/ir.access.csv',
+        'views/views.xml',
+    ],
+}
+
