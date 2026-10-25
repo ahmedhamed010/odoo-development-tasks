@@ -26,6 +26,12 @@
           <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done"/>
         </header>
         <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button name="action_view_tasks" type="object"
+                    class="oe_stat_button" icon="fa-tasks">
+              <field name="task_count" widget="statinfo" string="Tasks"/>
+            </button>
+          </div>
           <group>
             <group string="General Info">
               <field name="name"/>
@@ -35,9 +41,20 @@
             <group string="Date Info">
               <field name="date_start"/>
               <field name="deadline"/>
+              <field name="progress" widget="progressbar"/>
             </group>
           </group>
           <notebook>
+            <page string="Tasks">
+              <field name="task_ids">
+                <list editable="bottom">
+                  <field name="name"/>
+                  <field name="deadline"/>
+                  <field name="assignee_id"/>
+                  <field name="done"/>
+                </list>
+              </field>
+            </page>
             <page string="Notes">
               <field name="notes"/>
             </page>
