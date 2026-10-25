@@ -1,4 +1,5 @@
 from odoo import fields, models, api
+from odoo.exceptions import ValidationError
 
 
 class ShiftOnboardingProject(models.Model):
@@ -12,8 +13,8 @@ class ShiftOnboardingProject(models.Model):
         'res.users', string='Responsible',
         default=lambda self: self.env.user, tracking=True,
     )
-    date_start = fields.Date()
-    deadline = fields.Date()
+    date_start = fields.Date(tracking=True)
+    deadline = fields.Date(tracking=True)
     state = fields.Selection(
         [
             ('draft', 'Draft'),
@@ -43,7 +44,7 @@ class ShiftOnboardingProject(models.Model):
             done = len(project.task_ids.filtered('done'))
             project.progress = (done / total * 100.0) if total else 0.0
 
-    # 
+    # view tasks method with stat button 
     def action_view_tasks(self):
         self.ensure_one()
         return {
@@ -54,3 +55,43 @@ class ShiftOnboardingProject(models.Model):
             'domain': [('project_id', '=', self.id)],
             'context': {'default_project_id': self.id},
         }
+
+    # state change methods
+    def action_start(self):
+        for project in self:
+            project.state = 'in_progress'
+
+    def action_done(self):
+        for project in self:
+            project.state = 'done'
+
+    def action_cancel(self):
+        for project in self:
+            project.state = 'cancelled'
+
+
+# constraints methods
+    # check if deadline is after start date
+    @api.constrains('date_start' , 'deadline')
+    def _check_dates(self):
+        for project in self:
+            if (project.date_start and project.deadline 
+            and project.deadline <= project.date_start):
+                raise ValidationError(
+                    self.env._("The deadline must come after the start date."))
+            
+    
+    # check if all tasks are done when state is done
+    @api.constrains('state')
+    def _check_open_tasks_when_done(self):
+        for project in self.filtered(lambda p: p.state == 'done'):
+            open_tasks = project.task_ids.filtered(lambda t: not t.done)
+            if open_tasks:
+                raise ValidationError(
+                    self.env._(
+                        "You cannot mark the project as done while tasks "
+                        "are still open: %s"
+                    ) % ', '.join(open_tasks.mapped('name'))
+                )
+            
+            
