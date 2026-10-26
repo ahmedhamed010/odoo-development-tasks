@@ -1,3 +1,5 @@
 id,name,model_id,group_id/id,operation,domain
-access_shift_onboarding_project_user,shift.onboarding.project user,shift.onboarding.project,base.group_user,cru,
-access_shift_onboarding_task_user,shift.onboarding.task user,shift.onboarding.task,base.group_user,crud,
+access_shift_onboarding_project_user,shift.onboarding.project user,shift.onboarding.project,shift_onboarding.group_shift_onboarding_user,cru,"[('user_id', '=', user.id)]"
+access_shift_onboarding_project_manager,shift.onboarding.project manager,shift.onboarding.project,shift_onboarding.group_shift_onboarding_manager,crud,
+access_shift_onboarding_task_user,shift.onboarding.task user,shift.onboarding.task,shift_onboarding.group_shift_onboarding_user,crud,"[('project_id.user_id', '=', user.id)]"
+access_shift_onboarding_task_manager,shift.onboarding.task manager,shift.onboarding.task,shift_onboarding.group_shift_onboarding_manager,crud,

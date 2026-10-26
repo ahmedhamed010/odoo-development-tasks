@@ -6,6 +6,7 @@
     'license': 'LGPL-3',
     'depends': ['base', 'mail' , 'sale'],
     'data': [
+        'security/security.xml',
         'security/ir.access.csv',
         'views/views.xml',
         'views/inherited_views.xml',

@@ -1,0 +1,21 @@
+<odoo>
+    <record id="res_groups_privilege_shift_onboarding" model="res.groups.privilege">
+        <field name="name">Shift Onboarding</field>
+        <field name="sequence">50</field>
+        <field name="category_id" ref="base.module_category_services"/>
+    </record>
+
+    <record id="group_shift_onboarding_user" model="res.groups">
+        <field name="name">User: Own Projects Only</field>
+        <field name="sequence">10</field>
+        <field name="privilege_id" ref="res_groups_privilege_shift_onboarding"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_shift_onboarding_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="sequence">20</field>
+        <field name="privilege_id" ref="res_groups_privilege_shift_onboarding"/>
+        <field name="implied_ids" eval="[(4, ref('group_shift_onboarding_user'))]"/>
+    </record>
+</odoo>
