@@ -28,7 +28,7 @@ class ShiftOnboardingProject(models.Model):
     task_ids = fields.One2many('shift.onboarding.task' , 'project_id' , string='Tasks')
     task_count = fields.Integer(compute='_compute_task_count')
     progress = fields.Float(compute='_compute_progress', store=True)
-
+    sale_order_id = fields.Many2one('sale.order', string='Sale Order', copy=False,)
 
     # computes fields 
     @api.depends('task_ids')

@@ -4,10 +4,11 @@
     'category': 'Uncategorized',
     'version': '0.1',
     'license': 'LGPL-3',
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail' , 'sale'],
     'data': [
         'security/ir.access.csv',
         'views/views.xml',
+        'views/inherited_views.xml',
     ],
 }
 
