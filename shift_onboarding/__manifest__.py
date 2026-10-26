@@ -10,6 +10,7 @@
         'security/ir.access.csv',
         'views/views.xml',
         'views/inherited_views.xml',
+        'report/project_report.xml',
     ],
 }
 
