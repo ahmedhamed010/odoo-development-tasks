@@ -1,0 +1,12 @@
+<odoo noupdate="1">
+  <record id="cron_overdue_task_activities" model="ir.cron">
+    <field name="name">Onboarding: activity for overdue tasks</field>
+    <field name="model_id" ref="model_shift_onboarding_task"/>
+    <field name="state">code</field>
+    <field name="code">model._cron_create_overdue_activities()</field>
+    <field name="user_id" ref="base.user_root"/>
+    <field name="interval_number">1</field>
+    <field name="interval_type">days</field>
+    <field name="active">True</field>
+  </record>
+</odoo>
