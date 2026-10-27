@@ -11,6 +11,8 @@
         'data/ir_cron.xml',
         'views/views.xml',
         'views/inherited_views.xml',
+        'views/wizard_views.xml',
+        'wizard/reassign_wizard_views.xml',
         'report/project_report.xml',
     ],
 }
