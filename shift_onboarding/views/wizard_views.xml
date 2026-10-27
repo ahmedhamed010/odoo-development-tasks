@@ -1,0 +1,24 @@
+<odoo>
+  <record id="shift_task_view_list" model="ir.ui.view">
+    <field name="name">shift.onboarding.task.list</field>
+    <field name="model">shift.onboarding.task</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="project_id"/>
+        <field name="deadline"/>
+        <field name="assignee_id"/>
+        <field name="done"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="shift_task_action" model="ir.actions.act_window">
+    <field name="name">Tasks</field>
+    <field name="res_model">shift.onboarding.task</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="shift_task_menu_item" name="Tasks"
+            parent="shift_menu" action="shift_task_action"/>
+</odoo>
