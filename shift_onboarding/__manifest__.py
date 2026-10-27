@@ -8,6 +8,7 @@
     'data': [
         'security/security.xml',
         'security/ir.access.csv',
+        'data/ir_cron.xml',
         'views/views.xml',
         'views/inherited_views.xml',
         'report/project_report.xml',
